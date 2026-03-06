@@ -1,0 +1,27 @@
+import hashlib
+import time
+import random
+
+difficulty = 5
+block_data = "demo block"
+nonce = 0
+
+print("Starting miner...")
+
+start = time.time()
+
+while True:
+    nonce += 1
+
+    data = block_data + str(nonce)
+    hash_result = hashlib.sha256(data.encode()).hexdigest()
+
+    if hash_result.startswith("0" * difficulty):
+        print("Valid block found!")
+        print("Nonce:", nonce)
+        print("Hash:", hash_result)
+        break
+
+end = time.time()
+
+print("Mining time:", end - start, "seconds")
